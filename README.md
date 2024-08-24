@@ -18,8 +18,28 @@ As outlined before, the Microbigge dataset did not originally include the DNA se
 
 ### Binary Classifier for AMR Genes
 
-Initially, we focused on developing a quick binary classifier to identify AMR genes versus non-AMR (for example, virulence or bacterial stress) - one-hot encoding was used to further differentiate the gene types (AMR with a value of 1 with everything else being 0). We used a pre-trained BERT (Bidirectional Encoded Representations of Transformers) model from Hugging Face, DNA-BERT-6. Due to RAM issues on Google Colab, we had to only use some of the dataset because of the large length of the sequences (>1000 nucleotides). Once the sequences were tokenized, we created a class called *SimpleDataset* to convert it back to a format suitable for PyTorch's DataLoader package to test the DNABERT model.
+Initially, we focused on developing a quick binary classifier to identify AMR genes versus non-AMR (for example, virulence or bacterial stress) - one-hot encoding was used to further differentiate the gene types (AMR with a value of 1 with everything else being 0). We used a pre-trained BERT (Bidirectional Encoded Representations of Transformers) model from Hugging Face, DNA-BERT-6. Due to RAM issues on Google Colab, we had to only use some of the dataset because of the large length of the sequences (>1000 nucleotides). Once the sequences were tokenized, we created a class called *SimpleDataset* to convert it back to a format suitable for PyTorch's DataLoader package to test the DNABERT model. To inflate the amount of data without crashing all available RAM in Google Colab, we used the k-mer technique, or shifting a select number of nucleotides (letters in the sequence, in our case six) to the left or right as well as introduce random mutations in the sequence.
 
 ### Identifying AMR based on SMILES and sequence data
 
-This approach used DNABERT, but also another pre-trained BERT model on top of that from DeepChem, **ChemBERTa-77M**. Rather than one-hot encoding for the type of genes, we used the LabelEncoder method from **sklearn.preprocessing**. Another distinction is that we used the logits, or classification scores for embedded SMILES since there were only ~80 different antimicrobial molecules in the dataset shared across genes rather than the raw embeddings themselves. For the model, the encoded label tensors, sequence embeddings, and SMILES logits were concatenated and processed with a class **ResistancePredictionModel**, which processes this concatenated data through two fully connected layers with a sigmoid activation to estimate the probability of a DNA sequence coding for a gene conferring resistance to a given antibiotic given its SMILES information. 
+This approach used DNABERT, but also another pre-trained BERT model on top of that from DeepChem, **ChemBERTa-77M**. Rather than one-hot encoding for the type of genes, we used the *LabelEncoder* method from **sklearn.preprocessing**. Another distinction is that we used the logits, or classification scores for embedded SMILES since there were only ~80 different antimicrobial molecules in the dataset shared across genes rather than the raw embeddings themselves. For the model, the encoded label tensors, sequence embeddings, and SMILES logits were concatenated and processed with a class **ResistancePredictionModel**, which processes this concatenated data through two fully connected layers with a sigmoid activation to estimate the probability of a DNA sequence coding for a gene conferring resistance to a given antibiotic given its SMILES information. All of this can be found in the **tandem-tokenizers** notebook.
+
+## Results
+
+For the binary AMR classifier using the pretrained DNABERT model, we got these results for the following species:
+
+<ul>
+*E. coli*: 54.6% accuracy, F1: 0.39 (4,500 samples)
+*Salmonella enterica*: 79.3% accuracy, F1: 0.70 (1,500 samples)
+</ul>
+
+Pivoting towards incorporating SMILES information to predict antibiotic resistance, we achieved the following results:
+
+<ul>
+*E. coli*: 53.8% accuracy, F1: N/A
+*Salmonella enterica*: 81.4% accuracy, F1: 0.49
+</ul>
+
+## Future Directions
+
+We would like to develop an application that can take the SMILES input of a given antibiotic and then predict the likelihood of generating resistance for multiple common microbes (including but not limited to *E. coli*, *Salmonella*, *Listeria*). However, before doing that, we need to refine our hyper-parameters further and increase our accuracy statistics, and this may be done through acquiring more of the original Microbigge dataset on Google Cloud or finding an alternative, more comprehensive dataset.
