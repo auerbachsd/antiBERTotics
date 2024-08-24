@@ -3,10 +3,10 @@
 ## Team Members: 
 
 <ul>
-<li> **Scott Auerbach** </li>
-<li> **Craig Corsi** </li>
-<li> **Samuel Ogunfuye** </li>
-<li> **Hatice Mutlu** </li>
+<li> Scott Auerbach </li>
+<li> Craig Corsi </li>
+<li> Samuel Ogunfuye </li>
+<li> Hatice Mutlu </li>
 </ul>
 
 This is our repository for our Summer 2024 Erdos Deep Learning Project. The aim of the project is to predict the likelihood of common pathogenic bacteria being resistant to a given antimicrobial small molecule drug by examining the possible correlation between the DNA sequence that codes for antimicrobial resistance (AMR) genes and the SMILES (Simplified Molecular Input Line Entry System) data for each antibiotic that represents its structure with an essentially extended Latin alphabet. 
@@ -38,8 +38,8 @@ For the binary AMR classifier using the pretrained DNABERT model, we got these r
 
 <ul>
 
-<li> *E. coli* : 54.6% accuracy, F1: 0.39 (4,500 samples) </li>
-<li> *Salmonella enterica* : 79.3% accuracy, F1: 0.70 (1,500 samples) </li>
+<li> E. coli : 54.6% accuracy, F1: 0.39 (4,500 samples) </li>
+<li> Salmonella enterica : 79.3% accuracy, F1: 0.70 (1,500 samples) </li>
 
 </ul>
 
@@ -47,8 +47,8 @@ Pivoting towards incorporating SMILES information to predict antibiotic resistan
 
 <ul>
 
-<li> *E. coli* : 53.8% accuracy, F1: N/A </li>
-<li> *Salmonella enterica* : 81.4% accuracy, F1: 0.49 </li>
+<li> E. coli : 53.8% accuracy, F1: N/A </li>
+<li> Salmonella enterica : 81.4% accuracy, F1: 0.49 </li>
 
 </ul>
 
