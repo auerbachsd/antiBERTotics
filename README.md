@@ -29,15 +29,15 @@ This approach used DNABERT, but also another pre-trained BERT model on top of th
 For the binary AMR classifier using the pretrained DNABERT model, we got these results for the following species:
 
 <ul>
-*E. coli*: 54.6% accuracy, F1: 0.39 (4,500 samples)
-*Salmonella enterica*: 79.3% accuracy, F1: 0.70 (1,500 samples)
+*E. coli* : 54.6% accuracy, F1: 0.39 (4,500 samples)
+*Salmonella enterica* : 79.3% accuracy, F1: 0.70 (1,500 samples)
 </ul>
 
 Pivoting towards incorporating SMILES information to predict antibiotic resistance, we achieved the following results:
 
 <ul>
-*E. coli*: 53.8% accuracy, F1: N/A
-*Salmonella enterica*: 81.4% accuracy, F1: 0.49
+*E. coli* : 53.8% accuracy, F1: N/A
+*Salmonella enterica* : 81.4% accuracy, F1: 0.49
 </ul>
 
 ## Future Directions
