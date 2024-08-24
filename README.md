@@ -1,7 +1,13 @@
 # antiBERTotics
 
 ## Team Members: 
-**Scott Auerbach**, **Craig Corsi**, **Samuel Ogunfuye**, and **Hatice Mutlu**
+
+<ul>
+<li> **Scott Auerbach** </li>
+<li> **Craig Corsi** </li>
+<li> **Samuel Ogunfuye** </li>
+<li> **Hatice Mutlu** </li>
+</ul>
 
 This is our repository for our Summer 2024 Erdos Deep Learning Project. The aim of the project is to predict the likelihood of common pathogenic bacteria being resistant to a given antimicrobial small molecule drug by examining the possible correlation between the DNA sequence that codes for antimicrobial resistance (AMR) genes and the SMILES (Simplified Molecular Input Line Entry System) data for each antibiotic that represents its structure with an essentially extended Latin alphabet. 
 
@@ -11,6 +17,8 @@ This is our repository for our Summer 2024 Erdos Deep Learning Project. The aim 
 The dataset used for this project is the Microbigge (Microbial Browser for Genetic and Genomic Elements) data from NCBI (National Center for Biotechnology Information)'s pathogen detection project. Types of information include the bacterial species, the type of the gene coded for (AMR, virulence, or stress). Originally, there were 32,000,000 different genes spread across various pathogens, but due to the sheer size of the data, the web download limit is 100,000 rows(genes), and this was used to extract the DNA sequences from the NCBI Entrez search tool with the contig(uous) accession number for each gene using the *biopython* package. To add the SMILES data for the antibiotics, we used a similar method using the *requests* package. During both of these processes, some of the DNA sequences and SMILES information were irretrievable for whichever reason, so the actual training dataset was somewhat reduced. We focused on two common gut pathogens for this project: *Escherichia coli* and *Salmonella enterica*.
 
 URL: https://www.ncbi.nlm.nih.gov/pathogens/microbigge/
+
+We've also included a 50-row sample of the filtered (missing values for SMILES or DNA sequences removed) *E. coli* dataset used for model evaluation to give an example. The full file is ~4.73 GB and thus cannot be easily shared, but if anyone is interested, please follow up with us for access.
 
 ## Metholodology
 
@@ -30,20 +38,30 @@ For the binary AMR classifier using the pretrained DNABERT model, we got these r
 
 <ul>
 
-*E. coli* : 54.6% accuracy, F1: 0.39 (4,500 samples)
+<li> *E. coli* : 54.6% accuracy, F1: 0.39 (4,500 samples) </li>
+<li> *Salmonella enterica* : 79.3% accuracy, F1: 0.70 (1,500 samples) </li>
 
-*Salmonella enterica* : 79.3% accuracy, F1: 0.70 (1,500 samples)
 </ul>
 
 Pivoting towards incorporating SMILES information to predict antibiotic resistance, we achieved the following results:
 
 <ul>
 
-*E. coli* : 53.8% accuracy, F1: N/A
+<li> *E. coli* : 53.8% accuracy, F1: N/A </li>
+<li> *Salmonella enterica* : 81.4% accuracy, F1: 0.49 </li>
 
-*Salmonella enterica* : 81.4% accuracy, F1: 0.49
 </ul>
 
 ## Future Directions
 
 We would like to develop an application that can take the SMILES input of a given antibiotic and then predict the likelihood of generating resistance for multiple common microbes (including but not limited to *E. coli*, *Salmonella*, *Listeria*). However, before doing that, we need to refine our hyper-parameters further and increase our accuracy statistics, and this may be done through acquiring more of the original Microbigge dataset on Google Cloud or finding an alternative, more comprehensive dataset.
+
+
+## Citations
+
+<ol>
+<li> Ea Zankari, Henrik Hasman, Salvatore Cosentino, Martin Vestergaard, Simon Rasmussen, Ole Lund, Frank M. Aarestrup, Mette Voldby Larsen, Identification of acquired antimicrobial resistance genes, Journal of Antimicrobial Chemotherapy, Volume 67, Issue 11, November 2012, Pages 2640–2644, https://doi.org/10.1093/jac/dks261 </li>
+<li> Eyal Mazuz, Guy Shtar, Nir Kutsky, Lior Rokach, Bracha Shapira, Pretrained transformer models for predicting the withdrawal of drugs from the market, Bioinformatics, Volume 39, Issue 8, August 2023, btad519, https://doi.org/10.1093/bioinformatics/btad519 </li>
+<li> Yanrong Ji, Zhihan Zhou, Han Liu, Ramana V Davuluri, DNABERT: pre-trained Bidirectional Encoder Representations from Transformers model for DNA-language in genome, Bioinformatics, Volume 37, Issue 15, August 2021, Pages 2112–2120, https://doi.org/10.1093/bioinformatics/btab083 </li>
+<li> Ren Y, Chakraborty T, Doijad S, Falgenhauer L, Falgenhauer J, Goesmann A, Hauschild AC, Schwengers O, Heider D. Prediction of antimicrobial resistance based on whole-genome sequencing and machine learning. Bioinformatics. 2022 Jan 3;38(2):325-334. doi: 10.1093/bioinformatics/btab681. PMID: 34613360; PMCID: PMC8722762. </li>
+</ol>
