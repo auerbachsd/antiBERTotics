@@ -20,9 +20,11 @@ URL: https://www.ncbi.nlm.nih.gov/pathogens/microbigge/
 
 We've also included a 50-row sample of the filtered (missing values for SMILES or DNA sequences removed) *E. coli* dataset used for model evaluation to give an example. The full file is ~4.73 GB and thus cannot be easily shared, but if anyone is interested, please follow up with us for access.
 
-## Metholodology
+## Methodology
 
 As outlined before, the Microbigge dataset did not originally include the DNA sequences, so the Entrez method in Biopython was used to obtain the sequences using the gene's contig accession (this cannot be done using a more general approach like BeautifulSoup). The script for this can be seen on the Jupyter notebook **microbigge_seq_entrez**. For the SMILES information for each of the antimicrobials, we used a *requests*-based approach to perform a mass search query in the DeepChem database in **deepchem-analysis**. However, we did lose quite a few sequences for genes coding for either AMR or something else, so these genes were filtered out for later analyses. Likewise for SMILES, we could not always get some of it because the **Class** column had values like "EFFLUX" which don't correspond to any compounds. In spite of the missing values, most of the original dataset was still available for model training. 
+
+Our stakeholders include both pre-clinical and clinical research teams, as well as pharmaceutical companies, medical centers, and their clients. Our KPIs are accuracy score, precision score, and F1-score.
 
 ### Binary Classifier for AMR Genes
 
