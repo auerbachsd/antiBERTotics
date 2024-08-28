@@ -49,7 +49,7 @@ Pivoting towards incorporating SMILES information to predict antibiotic resistan
 
 <ul>
 
-<li> E. coli : 53.8% accuracy, F1: N/A </li>
+<li> E. coli : 53.8% accuracy, F1: 0.21 </li>
 <li> Salmonella enterica : 81.4% accuracy, F1: 0.49 </li>
 
 </ul>
